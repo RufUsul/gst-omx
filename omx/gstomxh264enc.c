@@ -667,10 +667,10 @@ set_alg_decoding_refresh (GstOMXH264Enc * self)
   GST_OMX_INIT_STRUCT (&config_idr);
   config_idr.nPortIndex = GST_OMX_VIDEO_ENC (self)->enc_out_port->index;
 
+  config_idr.nInstantaneousDecodingRefreshFrequency = self->periodicty_idr;
+
   GST_DEBUG_OBJECT (self, "nIDRPeriod:%u",
       (guint) config_idr.nInstantaneousDecodingRefreshFrequency);
-
-  config_idr.nInstantaneousDecodingRefreshFrequency = self->periodicty_idr;
 
   err =
       gst_omx_component_set_parameter (GST_OMX_VIDEO_ENC (self)->enc,
